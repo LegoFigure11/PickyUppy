@@ -311,7 +311,6 @@ public partial class MainWindow : Form
                 b.DataSource = source;
         }
     }
-
     public void SetDataGridViewDataSource(object source, params object[] obj)
     {
         foreach (object o in obj)
@@ -323,32 +322,28 @@ public partial class MainWindow : Form
             {
                 Invoke(() =>
                 {
-                    d.AutoGenerateColumns = true;
                     d.DataSource = source;
 
-                    d.Columns["Seed"]?.DisplayIndex = d.Columns.Count - 1;
-                    d.Columns["HP"]?.Width = 50;
-                    d.Columns["Atk"]?.Width = 50;
-                    d.Columns["Def"]?.Width = 50;
-                    d.Columns["SpA"]?.Width = 50;
-                    d.Columns["SpD"]?.Width = 50;
-                    d.Columns["Spe"]?.Width = 50;
-
-
+                    for (var i = 0; i <= d.ColumnCount - 1; i++)
+                    {
+                        d.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                        var width = d.Columns[i].Width;
+                        d.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                        d.Columns[i].Width = width;
+                    }
                 });
             }
             else
             {
-                d.AutoGenerateColumns = true;
                 d.DataSource = source;
 
-                d.Columns["Seed"]?.DisplayIndex = d.Columns.Count - 1;
-                d.Columns["HP"]?.Width = 50;
-                d.Columns["Atk"]?.Width = 50;
-                d.Columns["Def"]?.Width = 50;
-                d.Columns["SpA"]?.Width = 50;
-                d.Columns["SpD"]?.Width = 50;
-                d.Columns["Spe"]?.Width = 50;
+                for (var i = 0; i <= d.ColumnCount - 1; i++)
+                {
+                    d.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    var width = d.Columns[i].Width;
+                    d.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                    d.Columns[i].Width = width;
+                }
             }
         }
     }
@@ -726,69 +721,6 @@ public partial class MainWindow : Form
 #endif
     }
 
-    /*private void B_Static_Search_Click(object sender, EventArgs e)
-    {
-        ValidateInputs();
-        SetControlEnabledState(false, B_Static_Search);
-        Task.Run(async () =>
-        {
-            var s0 = ulong.Parse(TB_InitialSeed0.GetText(), NumberStyles.AllowHexSpecifier);
-            var s1 = ulong.Parse(TB_InitialSeed1.GetText(), NumberStyles.AllowHexSpecifier);
-            var start = ulong.Parse(TB_Static_Initial.GetText());
-            var end = ulong.Parse(TB_Static_Advances.GetText());
-
-            var cfg = new StaticConfig()
-            {
-                SID = ushort.Parse(TB_SID.GetText()),
-                TID = ushort.Parse(TB_TID.GetText()),
-
-                UseDelay = CB_Static_Delay.GetIsChecked(),
-                Delay = NUD_Static_Delay.GetValue(),
-
-                TargetNature = GetFilterNatureType(CB_Static_Nature.GetSelectedIndex()),
-
-                TargetMinIVs = [NUD_Static_HP_Min.GetValue(), NUD_Static_Atk_Min.GetValue(), NUD_Static_Def_Min.GetValue(), NUD_Static_SpA_Min.GetValue(), NUD_Static_SpD_Min.GetValue(), NUD_Static_Spe_Min.GetValue()],
-                TargetMaxIVs = [NUD_Static_HP_Max.GetValue(), NUD_Static_Atk_Max.GetValue(), NUD_Static_Def_Max.GetValue(), NUD_Static_SpA_Max.GetValue(), NUD_Static_SpD_Max.GetValue(), NUD_Static_Spe_Max.GetValue()],
-                SearchTypes = [GetIVSearchType(L_Static_HPSpacer.GetText()), GetIVSearchType(L_Static_AtkSpacer.GetText()), GetIVSearchType(L_Static_DefSpacer.GetText()), GetIVSearchType(L_Static_SpASpacer.GetText()), GetIVSearchType(L_Static_SpDSpacer.GetText()), GetIVSearchType(L_Static_SpeSpacer.GetText())],
-
-                _pk = GetMainEncounter(CB_Static_Species.GetSelectedIndex()),
-
-                FiltersEnabled = CB_Static_FiltersEnabled.GetIsChecked(),
-            };
-
-            (s0, s1) = RNGUtil.XoroshiroJump(s0, s1, start);
-
-            var staticFrames = await Static.Generate(s0, s1, start, end, cfg);
-
-            hasShifted = false;
-            SetBindingSourceDataSource(staticFrames, BS_StaticResults);
-            SetDataGridViewDataSource(BS_StaticResults, DGV_Results);
-            SetControlEnabledState(true, B_Static_Search);
-            Frames = [.. staticFrames.Cast<object>()];
-        });
-    }*/
-
-    bool hasShifted = false;
-
-    private void DGV_Results_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-    {
-        var index = e.RowIndex;
-        if (Frames.Count <= index) return;
-        var row = DGV_Results.Rows[index];
-        var result = Frames[index];
-
-        if (!hasShifted)
-        {
-            DGV_Results.Columns["Height"]?.DisplayIndex = DGV_Results.ColumnCount - 1;
-            DGV_Results.Columns["Weight"]?.DisplayIndex = DGV_Results.ColumnCount - 1;
-            DGV_Results.Columns["GeneratorSeed"]?.DisplayIndex = DGV_Results.ColumnCount - 1;
-            DGV_Results.Columns["PokemonSeed"]?.DisplayIndex = DGV_Results.ColumnCount - 1;
-            DGV_Results.Columns["Seed0"]?.DisplayIndex = DGV_Results.ColumnCount - 1;
-            DGV_Results.Columns["Seed1"]?.DisplayIndex = DGV_Results.ColumnCount - 1;
-            hasShifted = true;
-        }
-    }
-
     private void B_CopyToInitial_Click(object sender, EventArgs e)
     {
 #if DEBUG
@@ -828,7 +760,6 @@ public partial class MainWindow : Form
         }
 #endif
     }
-
     private void B_Search_Click(object sender, EventArgs e)
     {
         SetControlEnabledState(false, B_Search);
@@ -855,6 +786,8 @@ public partial class MainWindow : Form
                 Table = loc == 0 ? TableType.GameCorner : (TableType)tab,
                 Candy = (CandyType)can,
 
+                Jump = CB_Jump.GetIsChecked(),
+
                 Target = val,
 
                 Quantity = NUD_Quantity.GetValue(),
@@ -865,12 +798,14 @@ public partial class MainWindow : Form
             (s0, s1) = RNGUtil.XoroshiroJump(s0, s1, start);
 
             var itemFrames = await FloorItem.Generate(s0, s1, start, end, cfg);
+            Frames = [.. itemFrames.Cast<object>()];
 
-            hasShifted = false;
             SetBindingSourceDataSource(itemFrames, BS_Results);
             SetDataGridViewDataSource(BS_Results, DGV_Results);
+
+            SetControlVisibleState(cfg.Jump, DGV_Results.Columns[1]);
+
             SetControlEnabledState(true, B_Search);
-            Frames = [.. itemFrames.Cast<object>()];
         });
     }
 

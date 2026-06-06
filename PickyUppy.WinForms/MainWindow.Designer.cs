@@ -52,6 +52,12 @@ namespace PickyUppy.WinForms;
         L_InitialSeed0 = new Label();
         TB_InitialSeed0 = new TextBox();
         DGV_Results = new DataGridView();
+        advancesDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        jumpDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        itemDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        quantityDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        seed0DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        seed1DataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
         BS_Results = new BindingSource(components);
         B_Search = new Button();
         TB_Advances = new TextBox();
@@ -69,6 +75,7 @@ namespace PickyUppy.WinForms;
         L_CandyTable = new Label();
         L_Initial = new Label();
         label2 = new Label();
+        CB_Jump = new CheckBox();
         GB_Connection.SuspendLayout();
         GB_Seed.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)DGV_Results).BeginInit();
@@ -323,7 +330,10 @@ namespace PickyUppy.WinForms;
         dataGridViewCellStyle1.BackColor = Color.WhiteSmoke;
         DGV_Results.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
         DGV_Results.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        DGV_Results.AutoGenerateColumns = false;
         DGV_Results.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        DGV_Results.Columns.AddRange(new DataGridViewColumn[] { advancesDataGridViewTextBoxColumn, jumpDataGridViewTextBoxColumn, itemDataGridViewTextBoxColumn, quantityDataGridViewTextBoxColumn, seed0DataGridViewTextBoxColumn, seed1DataGridViewTextBoxColumn });
+        DGV_Results.DataSource = BS_Results;
         DGV_Results.Location = new Point(11, 233);
         DGV_Results.Name = "DGV_Results";
         DGV_Results.ReadOnly = true;
@@ -331,7 +341,54 @@ namespace PickyUppy.WinForms;
         DGV_Results.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         DGV_Results.Size = new Size(393, 253);
         DGV_Results.TabIndex = 129;
-        DGV_Results.CellFormatting += DGV_Results_CellFormatting;
+        // 
+        // advancesDataGridViewTextBoxColumn
+        // 
+        advancesDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+        advancesDataGridViewTextBoxColumn.DataPropertyName = "Advances";
+        advancesDataGridViewTextBoxColumn.HeaderText = "Advances";
+        advancesDataGridViewTextBoxColumn.Name = "advancesDataGridViewTextBoxColumn";
+        advancesDataGridViewTextBoxColumn.ReadOnly = true;
+        // 
+        // jumpDataGridViewTextBoxColumn
+        // 
+        jumpDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+        jumpDataGridViewTextBoxColumn.DataPropertyName = "Jump";
+        jumpDataGridViewTextBoxColumn.HeaderText = "Jump";
+        jumpDataGridViewTextBoxColumn.Name = "jumpDataGridViewTextBoxColumn";
+        jumpDataGridViewTextBoxColumn.ReadOnly = true;
+        // 
+        // itemDataGridViewTextBoxColumn
+        // 
+        itemDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+        itemDataGridViewTextBoxColumn.DataPropertyName = "Item";
+        itemDataGridViewTextBoxColumn.HeaderText = "Item";
+        itemDataGridViewTextBoxColumn.Name = "itemDataGridViewTextBoxColumn";
+        itemDataGridViewTextBoxColumn.ReadOnly = true;
+        // 
+        // quantityDataGridViewTextBoxColumn
+        // 
+        quantityDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+        quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
+        quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
+        quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
+        quantityDataGridViewTextBoxColumn.ReadOnly = true;
+        // 
+        // seed0DataGridViewTextBoxColumn
+        // 
+        seed0DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+        seed0DataGridViewTextBoxColumn.DataPropertyName = "Seed0";
+        seed0DataGridViewTextBoxColumn.HeaderText = "Seed0";
+        seed0DataGridViewTextBoxColumn.Name = "seed0DataGridViewTextBoxColumn";
+        seed0DataGridViewTextBoxColumn.ReadOnly = true;
+        // 
+        // seed1DataGridViewTextBoxColumn
+        // 
+        seed1DataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+        seed1DataGridViewTextBoxColumn.DataPropertyName = "Seed1";
+        seed1DataGridViewTextBoxColumn.HeaderText = "Seed1";
+        seed1DataGridViewTextBoxColumn.Name = "seed1DataGridViewTextBoxColumn";
+        seed1DataGridViewTextBoxColumn.ReadOnly = true;
         // 
         // BS_Results
         // 
@@ -378,7 +435,7 @@ namespace PickyUppy.WinForms;
         CB_FiltersEnabled.AutoSize = true;
         CB_FiltersEnabled.Checked = true;
         CB_FiltersEnabled.CheckState = CheckState.Checked;
-        CB_FiltersEnabled.Location = new Point(218, 117);
+        CB_FiltersEnabled.Location = new Point(218, 107);
         CB_FiltersEnabled.Name = "CB_FiltersEnabled";
         CB_FiltersEnabled.Size = new Size(102, 19);
         CB_FiltersEnabled.TabIndex = 133;
@@ -388,7 +445,7 @@ namespace PickyUppy.WinForms;
         // CB_Location
         // 
         CB_Location.FormattingEnabled = true;
-        CB_Location.Location = new Point(283, 12);
+        CB_Location.Location = new Point(283, 2);
         CB_Location.Name = "CB_Location";
         CB_Location.Size = new Size(121, 23);
         CB_Location.TabIndex = 134;
@@ -397,7 +454,7 @@ namespace PickyUppy.WinForms;
         // CB_ItemTable
         // 
         CB_ItemTable.FormattingEnabled = true;
-        CB_ItemTable.Location = new Point(283, 37);
+        CB_ItemTable.Location = new Point(283, 27);
         CB_ItemTable.Name = "CB_ItemTable";
         CB_ItemTable.Size = new Size(121, 23);
         CB_ItemTable.TabIndex = 135;
@@ -406,7 +463,7 @@ namespace PickyUppy.WinForms;
         // CB_CandyTable
         // 
         CB_CandyTable.FormattingEnabled = true;
-        CB_CandyTable.Location = new Point(283, 62);
+        CB_CandyTable.Location = new Point(283, 52);
         CB_CandyTable.Name = "CB_CandyTable";
         CB_CandyTable.Size = new Size(121, 23);
         CB_CandyTable.TabIndex = 136;
@@ -415,7 +472,7 @@ namespace PickyUppy.WinForms;
         // CB_TargetItem
         // 
         CB_TargetItem.FormattingEnabled = true;
-        CB_TargetItem.Location = new Point(283, 91);
+        CB_TargetItem.Location = new Point(283, 77);
         CB_TargetItem.Name = "CB_TargetItem";
         CB_TargetItem.Size = new Size(121, 23);
         CB_TargetItem.TabIndex = 137;
@@ -424,7 +481,7 @@ namespace PickyUppy.WinForms;
         // NUD_Quantity
         // 
         NUD_Quantity.Increment = new decimal(new int[] { 9, 0, 0, 0 });
-        NUD_Quantity.Location = new Point(372, 116);
+        NUD_Quantity.Location = new Point(372, 102);
         NUD_Quantity.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
         NUD_Quantity.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
         NUD_Quantity.Name = "NUD_Quantity";
@@ -435,7 +492,7 @@ namespace PickyUppy.WinForms;
         // L_Location
         // 
         L_Location.AutoSize = true;
-        L_Location.Location = new Point(214, 15);
+        L_Location.Location = new Point(214, 5);
         L_Location.Name = "L_Location";
         L_Location.Size = new Size(56, 15);
         L_Location.TabIndex = 139;
@@ -444,7 +501,7 @@ namespace PickyUppy.WinForms;
         // L_ItemTable
         // 
         L_ItemTable.AutoSize = true;
-        L_ItemTable.Location = new Point(214, 40);
+        L_ItemTable.Location = new Point(214, 30);
         L_ItemTable.Name = "L_ItemTable";
         L_ItemTable.Size = new Size(37, 15);
         L_ItemTable.TabIndex = 140;
@@ -453,7 +510,7 @@ namespace PickyUppy.WinForms;
         // L_TargetItem
         // 
         L_TargetItem.AutoSize = true;
-        L_TargetItem.Location = new Point(214, 94);
+        L_TargetItem.Location = new Point(214, 80);
         L_TargetItem.Name = "L_TargetItem";
         L_TargetItem.Size = new Size(42, 15);
         L_TargetItem.TabIndex = 141;
@@ -462,7 +519,7 @@ namespace PickyUppy.WinForms;
         // L_Quantity
         // 
         L_Quantity.AutoSize = true;
-        L_Quantity.Location = new Point(359, 118);
+        L_Quantity.Location = new Point(359, 104);
         L_Quantity.Name = "L_Quantity";
         L_Quantity.Size = new Size(13, 15);
         L_Quantity.TabIndex = 142;
@@ -471,7 +528,7 @@ namespace PickyUppy.WinForms;
         // L_CandyTable
         // 
         L_CandyTable.AutoSize = true;
-        L_CandyTable.Location = new Point(214, 65);
+        L_CandyTable.Location = new Point(214, 55);
         L_CandyTable.Name = "L_CandyTable";
         L_CandyTable.Size = new Size(56, 15);
         L_CandyTable.TabIndex = 143;
@@ -495,11 +552,23 @@ namespace PickyUppy.WinForms;
         label2.TabIndex = 145;
         label2.Text = "+";
         // 
+        // CB_Jump
+        // 
+        CB_Jump.AutoSize = true;
+        CB_Jump.CheckAlign = ContentAlignment.MiddleRight;
+        CB_Jump.Location = new Point(274, 126);
+        CB_Jump.Name = "CB_Jump";
+        CB_Jump.Size = new Size(130, 19);
+        CB_Jump.TabIndex = 146;
+        CB_Jump.Text = "Partner Menu Close";
+        CB_Jump.UseVisualStyleBackColor = true;
+        // 
         // MainWindow
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(416, 498);
+        Controls.Add(CB_Jump);
         Controls.Add(label2);
         Controls.Add(L_Initial);
         Controls.Add(L_CandyTable);
@@ -574,5 +643,12 @@ namespace PickyUppy.WinForms;
     private Label L_CandyTable;
     private Label L_Initial;
     private Label label2;
+    private CheckBox CB_Jump;
+    private DataGridViewTextBoxColumn advancesDataGridViewTextBoxColumn;
+    private DataGridViewTextBoxColumn jumpDataGridViewTextBoxColumn;
+    private DataGridViewTextBoxColumn itemDataGridViewTextBoxColumn;
+    private DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
+    private DataGridViewTextBoxColumn seed0DataGridViewTextBoxColumn;
+    private DataGridViewTextBoxColumn seed1DataGridViewTextBoxColumn;
 }
 

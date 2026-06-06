@@ -8,6 +8,14 @@ public static class RNGUtil
 
     public const ulong XOROSHIRO_CONST = 0x82A2B175229D6A5B;
 
+    public static uint DoPartnerMenuJump(ref Xoroshiro128Plus rng)
+    {
+        var (s0, s1) = rng.GetState();
+        rng.NextInt(121);
+        var (_s0, _s1) = rng.GetState();
+        return GetAdvancesPassed(s0, s1, _s0, _s1);
+    } 
+
     public static uint GetAdvancesPassed(ulong s0, ulong s1, ulong _s0, ulong _s1, ulong limit = MAX_TRACKED_ADVANCES)
     {
         if (s0 == _s0 && s1 == _s1) return 0;

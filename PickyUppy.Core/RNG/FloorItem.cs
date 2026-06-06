@@ -26,6 +26,9 @@ public static class FloorItem
                 var (_s0, _s1) = rng.GetState();
                 var inner = new Xoroshiro128Plus(_s0, _s1);
                 rng.Next();
+
+                var jump = 0u;
+                if (cfg.Jump) jump = RNGUtil.DoPartnerMenuJump(ref inner);
                 var rand = (uint)inner.NextInt(max);
 
                 var (item, qty) = FloorItems.GetItem(rand, table);
@@ -41,6 +44,8 @@ public static class FloorItem
                     _seed0 = _s0,
                     _seed1 = _s1,
                     _lang = lang,
+
+                    _jump = jump,
 
                     _itemIndex = idx,
 
