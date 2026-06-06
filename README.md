@@ -13,6 +13,8 @@ PickyUppy is a sys-botbase client and RNG Tool for Floor Items in Pok&eacute;mon
 
 A comprehensive usage guide brought to you by [Billo-PS](https://github.com/Billo-PS) can be found **[here](https://billo-guides.github.io/)**.
 
+![Tool Image](https://legofigure11.github.io/tools/desktop/res/PickyUppy/README.png)
+
 ## Features
 
 * Full RNG prediction for desirable Floor Items in Cerulean Cave and the Game Corner.
