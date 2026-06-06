@@ -26,11 +26,6 @@ public static class RNGUtil
         return i;
     }
 
-    public static uint GetShinyValue(uint x, uint y) => x ^ y;
-    public static uint GetShinyValue(uint x) => (x >> 16) ^ (x & 0xFFFF);
-
-    public static uint GetShinyXOR(uint pid, uint tsv) => GetShinyValue(GetShinyValue(pid), tsv);
-
     public static (ulong s0, ulong s1) XoroshiroJump(ulong s0, ulong s1, ulong jump)
     {
         do
