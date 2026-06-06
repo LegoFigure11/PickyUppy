@@ -14,5 +14,7 @@ public class ItemConfig : IGeneratorConfig
     public TableType Table { get; set; } = TableType.CaveBalls;
     public CandyType Candy { get; set; } = CandyType.Health;
 
+    public uint Quantity { get; set; } = 1;
+
     public Items Target { get; set; } = Items.MasterBall;
 }

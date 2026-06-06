@@ -31,6 +31,7 @@ public static class FloorItem
                 var (item, qty) = FloorItems.GetItem(rand, table);
 
                 if (cfg.FiltersEnabled && item != cfg.Target) continue;
+                if (cfg.FiltersEnabled && qty != cfg.Quantity) continue;
 
                 var idx = FloorItems.GetPKHeXItemIndex(item, candy);
 

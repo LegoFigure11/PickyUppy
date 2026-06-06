@@ -857,6 +857,8 @@ public partial class MainWindow : Form
 
                 Target = val,
 
+                Quantity = NUD_Quantity.GetValue(),
+
                 Language = Config.Language,
             };
 
