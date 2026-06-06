@@ -1,5 +1,5 @@
-﻿using System.Text.Json;
-using PKHeX.Core;
+﻿using PKHeX.Core;
+using System.Text.Json;
 
 namespace PickyUppy.WinForms.Subforms;
 

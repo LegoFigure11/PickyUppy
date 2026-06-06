@@ -2,6 +2,7 @@ using PickyUppy.Core;
 using PickyUppy.Core.Connection;
 using PickyUppy.Core.Enums;
 using PickyUppy.Core.Interfaces;
+using PickyUppy.Core.RNG;
 using PickyUppy.WinForms.Subforms;
 using PKHeX.Core;
 using SysBot.Base;
@@ -9,7 +10,6 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Text.Json;
 using static PickyUppy.Core.Utils;
-using PickyUppy.Core.RNG;
 
 namespace PickyUppy.WinForms;
 

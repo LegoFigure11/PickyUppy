@@ -1,6 +1,6 @@
-using System.Net.Sockets;
 using PickyUppy.Core.Structures;
 using SysBot.Base;
+using System.Net.Sockets;
 using static SysBot.Base.SwitchCommand;
 
 namespace PickyUppy.Core.Connection;
