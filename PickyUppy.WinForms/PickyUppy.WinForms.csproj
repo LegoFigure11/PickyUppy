@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <OutputType>WinExe</OutputType>
+	  <TargetFramework>net10.0-windows</TargetFramework>
+	  <Nullable>enable</Nullable>
+	  <UseWindowsForms>true</UseWindowsForms>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Platforms>x64</Platforms>
+	  <PublishSingleFile>true</PublishSingleFile>
+	  <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+	  <SelfContained>false</SelfContained>
+	  <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="5.4.0" />
+    <PackageReference Include="PKHeX.Core" Version="26.5.5" />
+  </ItemGroup>
+
+    <ItemGroup>
+    <ProjectReference Include="..\PickyUppy.Core\PickyUppy.Core.csproj" />
+  </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="SysBot.Base">
+        <HintPath>..\PickyUppy.Core\Connection\deps\SysBot.Base.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>
