@@ -22,7 +22,7 @@ public partial class MainWindow : Form
 
     public ClientConfig Config;
     private ConnectionWrapperAsync ConnectionWrapper = default!;
-    private readonly SwitchConnectionConfig ConnectionConfig;
+    private SwitchConnectionConfig ConnectionConfig;
 
     private bool stop;
     private bool reset;
@@ -129,7 +129,13 @@ public partial class MainWindow : Form
                 SetControlEnabledState(false, B_Connect);
                 try
                 {
-                    ConnectionConfig.IP = TB_SwitchIP.Text;
+                    ConnectionConfig = new()
+                    {
+                        IP = TB_SwitchIP.GetText(),
+                        Protocol = Config.Protocol,
+                        Port = Config.Protocol is SwitchProtocol.WiFi ? 6000 : Config.UsbPort,
+                    };
+                    ConnectionWrapper = new(ConnectionConfig, UpdateStatus);
                     (bool success, string err) = await ConnectionWrapper
                         .Connect(token)
                         .ConfigureAwait(false);
@@ -480,14 +486,12 @@ public partial class MainWindow : Form
         if (Config.Protocol is SwitchProtocol.WiFi)
         {
             Config.IP = TB_SwitchIP.Text;
-            ConnectionConfig.IP = TB_SwitchIP.Text;
         }
         else
         {
             if (int.TryParse(TB_SwitchIP.Text, out var port) && port >= 0)
             {
                 Config.UsbPort = port;
-                ConnectionConfig.Port = port;
                 return;
             }
 
