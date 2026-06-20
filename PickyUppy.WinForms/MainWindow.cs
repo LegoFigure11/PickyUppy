@@ -404,12 +404,6 @@ public partial class MainWindow : Form
         }
     }
 
-    private static Nature GetFilterNatureType(int selected) => selected switch
-    {
-        0 => Nature.Random,
-        _ => (Nature)(selected - 1),
-    };
-
     private void B_IV_Max_Click(object sender, EventArgs e)
     {
         var st = ((Button)sender).Name.Replace("B_", string.Empty).Replace("_Max", string.Empty);
@@ -659,16 +653,16 @@ public partial class MainWindow : Form
     private void ValidateInputs()
     {
         // Initial
-        /*var initial = TB_Static_Initial;
-        if (string.IsNullOrEmpty(initial.GetText())) SetControlText("0", initial);*/
+        var initial = TB_Initial;
+        if (string.IsNullOrEmpty(initial.GetText())) SetControlText("0", initial);
 
         // Advances
-        /*Control[] tbs = [TB_Spawner_Advances, TB_Static_Advances, TB_BabyMode];
+        Control[] tbs = [TB_AdvancesIncrease];
         foreach (var advances in tbs)
         {
             var adv = advances.GetText();
             if (string.IsNullOrEmpty(adv) || adv is "0") SetControlText("1", advances);
-        }*/
+        }
 
         // Seed
         if (string.IsNullOrEmpty(TB_InitialSeed0.GetText())) SetControlText("0", TB_InitialSeed0);
@@ -858,7 +852,15 @@ public partial class MainWindow : Form
         else
         {
             // Cerulean Cave
-            CB_CandyTable.Items.Add(items[0]);
+            if (idx == 1)
+            {
+                CB_CandyTable.Items.Add(items[7]);
+                CB_CandyTable.Items.Add(items[8]);
+            }
+            else
+            {
+                CB_CandyTable.Items.Add(items[0]);
+            }
 
             var type = (TableType)idx;
             var max = FloorItems.GetRandMax(type);
@@ -888,11 +890,12 @@ public partial class MainWindow : Form
         var loc = CB_Location.SelectedIndex;
         var tab = CB_ItemTable.SelectedIndex;
 
+        var pkhex = Strings.GetItemStrings(EntityContext.Gen7b);
+
         if (loc == 0 && tab == 0)
         {
             // Game Corner
             var candy = (CandyType)CB_CandyTable.SelectedIndex;
-            var pkhex = Strings.GetItemStrings(EntityContext.Gen7b);
 
             var type = TableType.GameCorner;
             var max = FloorItems.GetRandMax(type);
@@ -912,7 +915,35 @@ public partial class MainWindow : Form
             CB_TargetItem.DisplayMember = "Key";
             CB_TargetItem.ValueMember = "Value";
             CB_TargetItem.SelectedIndex = 0;
+        }
+        else if (loc == 1)
+        {
+            CB_TargetItem.Items.Clear();
+            if (tab == 1)
+            {
+                var candy = (CandyType)CB_CandyTable.SelectedIndex;
+                var type = TableType.CaveFossils;
+                var max = FloorItems.GetRandMax(type);
 
+                HashSet<Items> tableItems = [];
+                for (var i = 0u; i < max; i++)
+                {
+                    tableItems.Add(FloorItems.GetItem(i, type, candy).Item);
+                }
+
+                foreach (var item in tableItems)
+                {
+                    var index = FloorItems.GetPKHeXItemIndex(item, candy);
+                    CB_TargetItem.Items.Add(new KeyValuePair<string, Items>(pkhex[index], item));
+                }
+                CB_TargetItem.DisplayMember = "Key";
+                CB_TargetItem.ValueMember = "Value";
+                CB_TargetItem.SelectedIndex = 0;
+            }
+            else
+            {
+                var items = Core.Strings.GetSubTables(Config.Language);
+            }
         }
     }
 

@@ -31,7 +31,7 @@ public static class FloorItem
                 if (cfg.Jump) jump = RNGUtil.DoPartnerMenuJump(ref inner);
                 var rand = (uint)inner.NextInt(max);
 
-                var (item, qty) = FloorItems.GetItem(rand, table);
+                var (item, qty) = FloorItems.GetItem(rand, table, candy);
 
                 if (cfg.FiltersEnabled && item != cfg.Target) continue;
                 if (cfg.FiltersEnabled && qty != cfg.Quantity) continue;

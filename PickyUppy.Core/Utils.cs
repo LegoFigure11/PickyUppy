@@ -117,14 +117,14 @@ public static class Strings
     };
 
     private readonly static OrderedDictionary<string, string[]> SubTables = new() {
-        { "ja",      ["﻿(なし)", "げんきのアメ", "ちからのアメ", "まもりのアメ", "ちしきのアメ", "こころのアメ", "はやさのアメ"] },
-        { "en",      ["﻿(None)", "Health Candy", "Mighty Candy", "Tough Candy", "Smart Candy", "Courage Candy", "Quick Candy"] },
-        { "fr",      ["﻿(Aucun)", "Bonbon Santé", "Bonbon Force", "Bonbon Armure", "Bonbon Esprit", "Bonbon Mental", "Bonbon Sprint"] },
-        { "it",      ["﻿(None)", "Caramella vitalità", "Caramella potenza", "Caramella protezione", "Caramella acume", "Caramella intuito", "Caramella rapidità"] },
-        { "de",      ["(Keins)", "Energiebonbon", "Stärkebonbon", "Robustbonbon", "Gripsbonbon", "Mentalbonbon", "Flottbonbon"] },
-        { "es",      ["﻿Ningún", "Caramelo Vigor", "Caramelo Músculo", "Caramelo Aguante", "Caramelo Intelecto", "Caramelo Mente", "Caramelo Ímpetu"] },
-        { "ko",      ["﻿(없음)", "기력의사탕", "힘의사탕", "수비의사탕", "지식의사탕", "마음의사탕", "속도의사탕"] },
-        { "zh-Hans", ["(无)", "元气糖果", "力量糖果", "守护糖果", "知识糖果", "心灵糖果", "敏捷糖果"] },
-        { "zh-Hant", ["﻿(無)", "元氣糖果", "力量糖果", "守護糖果", "知識糖果", "心靈糖果", "敏捷糖果"] }
+        { "ja",      ["﻿(なし)", "げんきのアメ", "ちからのアメ", "まもりのアメ", "ちしきのアメ", "こころのアメ", "はやさのアメ", "Steps", "Daily/Near Mewtwo"] },
+        { "en",      ["﻿(None)", "Health Candy", "Mighty Candy", "Tough Candy", "Smart Candy", "Courage Candy", "Quick Candy", "Steps", "Daily/Near Mewtwo"] },
+        { "fr",      ["﻿(Aucun)", "Bonbon Santé", "Bonbon Force", "Bonbon Armure", "Bonbon Esprit", "Bonbon Mental", "Bonbon Sprint", "Steps", "Daily/Near Mewtwo"] },
+        { "it",      ["﻿(None)", "Caramella vitalità", "Caramella potenza", "Caramella protezione", "Caramella acume", "Caramella intuito", "Caramella rapidità", "Steps", "Daily/Near Mewtwo"] },
+        { "de",      ["(Keins)", "Energiebonbon", "Stärkebonbon", "Robustbonbon", "Gripsbonbon", "Mentalbonbon", "Flottbonbon", "Steps", "Daily/Near Mewtwo"] },
+        { "es",      ["﻿Ningún", "Caramelo Vigor", "Caramelo Músculo", "Caramelo Aguante", "Caramelo Intelecto", "Caramelo Mente", "Caramelo Ímpetu", "Steps", "Daily/Near Mewtwo"] },
+        { "ko",      ["﻿(없음)", "기력의사탕", "힘의사탕", "수비의사탕", "지식의사탕", "마음의사탕", "속도의사탕", "Steps", "Daily/Near Mewtwo"] },
+        { "zh-Hans", ["(无)", "元气糖果", "力量糖果", "守护糖果", "知识糖果", "心灵糖果", "敏捷糖果", "Steps", "Daily/Near Mewtwo"] },
+        { "zh-Hant", ["﻿(無)", "元氣糖果", "力量糖果", "守護糖果", "知識糖果", "心靈糖果", "敏捷糖果", "Steps", "Daily/Near Mewtwo"] }
     };
 }

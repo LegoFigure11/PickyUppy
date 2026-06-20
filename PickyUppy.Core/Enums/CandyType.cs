@@ -8,4 +8,7 @@ public enum CandyType : byte
     Smart = 3,
     Courage = 4,
     Quick = 5,
+
+    FossilDefault = Health,
+    FossilMewtwo = Mighty,
 };

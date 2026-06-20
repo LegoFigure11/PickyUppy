@@ -11,19 +11,19 @@ public static class FloorItems
         _                     => 100, // Game Corner
     };
 
-    public static (Items Item, byte Quantity) GetItem(uint rand, TableType table)
+    public static (Items Item, byte Quantity) GetItem(uint rand, TableType table, CandyType sub = CandyType.FossilDefault)
     {
-        var item = GetItemFromTable(rand, table);
+        var item = GetItemFromTable(rand, table, sub);
         var qty = GetItemQuantity(rand, table);
         return (item, qty);
     }
 
     private static byte GetItemQuantity(uint rand, TableType table) => (byte)((table == TableType.CaveBalls && rand >= 276) ? 10 : 1);
 
-    private static Items GetItemFromTable(uint rand, TableType table) => table switch {
+    private static Items GetItemFromTable(uint rand, TableType table, CandyType sub = CandyType.FossilDefault) => table switch {
         TableType.CaveBalls   => GetCaveBallItem(rand),
         TableType.CaveBerries => GetCaveBerriesItem(rand),
-        TableType.CaveFossils => GetCaveFossilsItem(rand),
+        TableType.CaveFossils => sub == CandyType.FossilDefault ? GetCaveFossilsItem(rand) : GetMewtwoFossilsItem(rand),
         _                     => GetGameCornerItem(rand),
     };
     private static Items GetCaveBallItem(uint rand) => rand switch
@@ -46,6 +46,13 @@ public static class FloorItems
         >= 30 => Items.DomeFossil,
         >= 10 => Items.HelixFossil,
         >=  0 => Items.OldAmber, 
+    };
+
+    private static Items GetMewtwoFossilsItem(uint rand) => rand switch
+    {
+        >= 60 => Items.DomeFossil,
+        >= 20 => Items.HelixFossil,
+        >=  0 => Items.OldAmber,
     };
 
     private static Items GetGameCornerItem(uint rand) => rand switch
