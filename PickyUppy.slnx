@@ -1,0 +1,12 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="PickyUppy.Core/PickyUppy.Core.csproj">
+    <Platform Project="x64" />
+  </Project>
+  <Project Path="PickyUppy.WinForms/PickyUppy.WinForms.csproj">
+    <BuildDependency Project="PickyUppy.Core/PickyUppy.Core.csproj" />
+    <Platform Project="x64" />
+  </Project>
+</Solution>
